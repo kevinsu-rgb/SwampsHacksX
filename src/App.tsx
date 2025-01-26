@@ -6,6 +6,7 @@ import Dashboard from "@/pages/Dashboard";
 import Chat from "@/pages/Chat";
 import SymptomChecker from "@/pages/SymptomChecker";
 import Auth from "@/pages/Auth";
+import FetchDataComponent from './pages/Chattest';
 import "./App.css";
 
 function App() {
