@@ -12,10 +12,10 @@ import { Activity, MessageSquare, Stethoscope, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const menuItems = [
-  { icon: Home, label: "Dashboard", path: "/dashboard" },
-  { icon: Stethoscope, label: "Symptom Checker", path: "/symptoms" },
+  { icon: Home, label: "Home", path: "/" },
+  // { icon: Stethoscope, label: "Symptom Checker", path: "/symptoms" },
   { icon: MessageSquare, label: "Chat", path: "/chat" },
-  { icon: Activity, label: "Health History", path: "/history" },
+  // { icon: Activity, label: "Health History", path: "/history" },
 ];
 
 export const AppSidebar = () => {
@@ -23,7 +23,7 @@ export const AppSidebar = () => {
     <Sidebar className="border-r border-border/50 glass-effect">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupLabel></SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
@@ -31,7 +31,7 @@ export const AppSidebar = () => {
                   <SidebarMenuButton asChild>
                     <Link to={item.path} className="flex items-center gap-2">
                       <item.icon className="w-5 h-5" />
-                      <span>{item.label}</span>
+                      <span className="text-3xl">{item.label}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
