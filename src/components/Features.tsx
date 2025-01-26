@@ -3,23 +3,23 @@ import { Brain, MessageSquare, Shield, Activity } from "lucide-react";
 const features = [
   {
     icon: Brain,
-    title: "Smart Diagnostics",
-    description: "Advanced AI analysis of symptoms for accurate health insights",
+    title: "Learn Diagnostics",
+    description: "Advanced AI conversations to improve your skills",
   },
   {
     icon: MessageSquare,
-    title: "24/7 AI Chat",
-    description: "Get instant answers to your health questions anytime",
+    title: "24/7 AI Chat", 
+    description: "Get instant practice with our AI chatbot",
   },
   {
     icon: Shield,
-    title: "Private & Secure",
-    description: "Your health data is encrypted and protected",
+    title: "Assessment",
+    description: "See your progress and get feedback",
   },
   {
     icon: Activity,
-    title: "Health Tracking",
-    description: "Monitor your health progress over time",
+    title: "Real Cases",
+    description: "Access real medical cases to practice on",
   },
 ];
 
