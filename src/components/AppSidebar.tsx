@@ -14,13 +14,18 @@ import { Link } from "react-router-dom";
 const menuItems = [
   { icon: Home, label: "Home", path: "/" },
   // { icon: Stethoscope, label: "Symptom Checker", path: "/symptoms" },
-  { icon: MessageSquare, label: "Chat", path: "/chat" },
+  { 
+    icon: MessageSquare, 
+    label: "Chat", 
+    path: "/chat",
+    onClick: () => window.location.reload() 
+  },
   // { icon: Activity, label: "Health History", path: "/history" },
 ];
 
 export const AppSidebar = () => {
   return (
-    <Sidebar className="w-40 border-r border-border/50 glass-effect">
+    <Sidebar className="border-r border-border/50 glass-effect">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel></SidebarGroupLabel>
@@ -29,7 +34,11 @@ export const AppSidebar = () => {
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.path}>
                   <SidebarMenuButton asChild>
-                    <Link to={item.path} className="flex items-center gap-2">
+                  <Link 
+                      to={item.path} 
+                      className="flex items-center gap-2"
+                      onClick={item.onClick}
+                    >
                       <item.icon className="w-5 h-5" />
                       <span className="text-3xl">{item.label}</span>
                     </Link>
@@ -43,4 +52,3 @@ export const AppSidebar = () => {
     </Sidebar>
   );
 };
-
