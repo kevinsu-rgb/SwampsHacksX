@@ -8,7 +8,6 @@ export const Hero = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-background text-center px-4">
       <div className="max-w-3xl mx-auto animate-fade-up">
