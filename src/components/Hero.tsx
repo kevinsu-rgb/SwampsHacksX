@@ -2,44 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+
+
 export const Hero = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const callCloudflareWorker = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch("https://winter-night-82d1.alex-lin.workers.dev", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          type: "chat",
-          inputs: {
-            messages: [
-              { role: "system", content: "You are a helpful assistant." },
-              { role: "user", content: "Who won the world series in 2020?" },
-            ],
-          },
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP Error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log(data);
-    } catch (error: any) {
-      setError(`Error calling Cloudflare Worker: ${error.message}`);
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background text-center px-4">
@@ -57,7 +25,6 @@ export const Hero = () => {
           <Button
             size="lg"
             className="bg-primary hover:bg-primary-light hover-effect"
-            onClick={callCloudflareWorker}
             disabled={loading}
           >
             {loading ? "Loading..." : "Let's Practice"}
