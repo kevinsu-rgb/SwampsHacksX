@@ -9,6 +9,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      case_report: {
+        Row: {
+          case_conc: string | null
+          case_pres: string
+          case_revi: string | null
+          casesreport_id: number
+        }
+        Insert: {
+          case_conc?: string | null
+          case_pres: string
+          case_revi?: string | null
+          casesreport_id?: number
+        }
+        Update: {
+          case_conc?: string | null
+          case_pres?: string
+          case_revi?: string | null
+          casesreport_id?: number
+        }
+        Relationships: []
+      }
       case_study: {
         Row: {
           age: number | null
