@@ -81,18 +81,18 @@ const Chat = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-background page-transition">
+    <div className="min-h-screen flex bg-background page-transition w-full">
       <AppSidebar />
-      <main className="flex-2 p-8 flex flex-col">
+      <main className="flex-2 p-8 flex flex-col w-full">
         <h1 className="text-3xl font-bold mb-8">AI Health Chat</h1>
-        <Card className="flex-1 glass-effect p-6 mb-4 overflow-auto">
-          <div className="space-y-4">
+        <Card className="flex-1 glass-effect p-6 mb-4 overflow-auto w-full">
+          <div className="space-y-4 w-full">
             {messages.map((message, index) => (
-              <div key={index} className={`flex items-start gap-4 ${message.role === 'user' ? 'justify-end' : ''}`}>
-                <div className={`rounded-lg p-6 max-w-[80%] ${
+              <div key={index} className={`flex items-start gap-4 w-full ${message.role === 'user' ? 'justify-end' : ''}`}>
+                <div className={`rounded-lg p-6 ${
                   message.role === 'user' 
-                    ? 'bg-primary text-primary-foreground ml-auto' 
-                    : 'bg-primary/10'
+                    ? 'bg-primary text-primary-foreground ml-auto max-w-[70%]' 
+                    : 'bg-primary/10 max-w-[70%]'
                 }`}>
                   <p className="text-lg font-medium mb-2">
                     {message.role === 'user' ? 'You' : 'Patient'}
@@ -104,8 +104,8 @@ const Chat = () => {
               </div>
             ))}
             {loading && (
-              <div className="flex items-start gap-4">
-                <div className="bg-primary/10 rounded-lg p-6 max-w-[80%]">
+              <div className="flex items-start gap-4 w-full">
+                <div className="bg-primary/10 rounded-lg p-6 max-w-[70%]">
                   <p className="text-lg font-medium text-primary mb-2">Patient</p>
                   <p className="text-xl leading-relaxed">Loading...</p>
                 </div>
@@ -113,10 +113,10 @@ const Chat = () => {
             )}
           </div>
         </Card>
-        <div className="flex gap-4">
+        <div className="flex gap-4 w-full">
           <Input
             placeholder="Type your message..."
-            className="flex-1 text-lg p-6 min-h-[60px]"
+            className="flex-1 text-lg p-6 min-h-[60px] w-full"
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             onKeyPress={handleKeyPress}
