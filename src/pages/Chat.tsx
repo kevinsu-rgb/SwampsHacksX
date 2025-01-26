@@ -14,8 +14,8 @@ const Chat = () => {
           <div className="space-y-4">
             <div className="flex items-start gap-4">
               <div className="bg-primary/10 rounded-lg p-4 max-w-[80%]">
-                <p className="text-sm font-medium text-primary mb-1">AI Doctor</p>
-                <p>Hello! How can I help you with your health today?</p>
+                <p className="text-sm font-medium text-primary mb-1">Med Coach</p>
+                <p>WHERE IS THIS</p>
               </div>
             </div>
           </div>
