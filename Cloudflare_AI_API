@@ -1,0 +1,67 @@
+// API: https://winter-night-82d1.alex-lin.workers.dev/
+export default {
+  async fetch(request, env) {
+    // Handle preflight OPTIONS request for CORS
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        headers: {
+          "Access-Control-Allow-Origin": "*", // Allow all origins or specify a particular domain
+          "Access-Control-Allow-Methods": "POST, OPTIONS", // Allow POST and OPTIONS methods
+          "Access-Control-Allow-Headers": "Content-Type", // Allow necessary headers like Content-Type
+          "Access-Control-Max-Age": "86400", // Cache preflight request for 24 hours
+        },
+      });
+    }
+
+    // Handle POST request
+    if (request.method !== "POST") {
+      return new Response("Only POST requests are supported", { status: 405 });
+    }
+
+    try {
+      const body = await request.json();
+
+      // Ensure the response includes the CORS headers as well
+      const responseHeaders = {
+        "Access-Control-Allow-Origin": "*", // Allow all origins or specify a particular domain
+        "Access-Control-Allow-Methods": "POST, OPTIONS", // Allow POST and OPTIONS methods
+        "Access-Control-Allow-Headers": "Content-Type", // Allow necessary headers like Content-Type
+      };
+
+      const tasks = [];
+      let response;
+
+      if (body.type === "simple") {
+        if (!body.inputs.prompt) {
+          return new Response(
+            JSON.stringify({ error: 'Invalid inputs for type "simple". "prompt" is required.' }),
+            { status: 400, headers: responseHeaders }
+          );
+        }
+        response = await env.AI.run("@cf/meta/llama-3-8b-instruct", { prompt: body.inputs.prompt });
+        tasks.push({ inputs: body.inputs, response });
+      } else if (body.type === "chat") {
+        if (!Array.isArray(body.inputs.messages)) {
+          return new Response(
+            JSON.stringify({ error: 'Invalid inputs for type "chat". "messages" must be an array.' }),
+            { status: 400, headers: responseHeaders }
+          );
+        }
+        response = await env.AI.run("@cf/meta/llama-3-8b-instruct", { messages: body.inputs.messages });
+        tasks.push({ inputs: body.inputs, response });
+      } else {
+        return new Response(
+          JSON.stringify({ error: 'Invalid type. Must be "simple" or "chat".' }),
+          { status: 400, headers: responseHeaders }
+        );
+      }
+
+      return new Response(JSON.stringify(tasks), { status: 200, headers: responseHeaders });
+    } catch (error) {
+      return new Response(
+        JSON.stringify({ error: "Failed to process the request.", details: error.message }),
+        { status: 500, headers: responseHeaders }
+      );
+    }
+  },
+};
