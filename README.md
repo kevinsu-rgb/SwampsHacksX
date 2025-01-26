@@ -13,6 +13,6 @@ Allow for additonal cases to be inserted into database through python script all
 Chatbot allowing for patient doctor experince in diagnosis, with varying cases
 
 #Strech Goal
-User has savable progress
-Virtual Human
-Sessions for different model
+- User has savable progress
+- Virtual Human
+- Sessions for different model
