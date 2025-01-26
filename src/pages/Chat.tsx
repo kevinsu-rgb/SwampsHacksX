@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import fetchPrompt from './Chattest';
 
 const Chat = () => {
+  const MAX_HISTORY = 50;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [inputMessage, setInputMessage] = useState("");
@@ -20,9 +21,10 @@ const Chat = () => {
     setLoading(true);
     setError(null);
     
-    // Add user message to chat
+    // Add user message to chat and trim history
     const newMessages = [...messages, { role: 'user', content: inputMessage }];
-    setMessages(newMessages);
+    const trimmedMessages = newMessages.slice(-MAX_HISTORY);
+    setMessages(trimmedMessages);
     setInputMessage(""); // Clear input after sending
 
     try {
@@ -36,7 +38,7 @@ const Chat = () => {
           inputs: {
             messages: [
               { role: "system", content: systemPrompt },
-              { role: "user", content: inputMessage },
+              ...trimmedMessages, // Send all trimmed messages as context
             ],
           },
         }),
@@ -48,8 +50,11 @@ const Chat = () => {
 
       const data = await response.json();
       const aiMessage = data[0].response.response;
+      
+      // Update messages with AI response while maintaining history limit
+      const updatedMessages = [...trimmedMessages, { role: 'assistant', content: aiMessage }].slice(-MAX_HISTORY);
       setAiResponse(aiMessage);
-      setMessages([...newMessages, { role: 'assistant', content: aiMessage }]);
+      setMessages(updatedMessages);
     } catch (error: any) {
       setError(`Error calling Cloudflare Worker: ${error.message}`);
       console.error(error);
@@ -90,7 +95,7 @@ const Chat = () => {
                     : 'bg-primary/10'
                 }`}>
                   <p className="text-lg font-medium mb-2">
-                    {message.role === 'user' ? 'You' : 'Med Coach'}
+                    {message.role === 'user' ? 'You' : 'Patient'}
                   </p>
                   <p className="text-xl leading-relaxed">
                     {message.content}
@@ -101,7 +106,7 @@ const Chat = () => {
             {loading && (
               <div className="flex items-start gap-4">
                 <div className="bg-primary/10 rounded-lg p-6 max-w-[80%]">
-                  <p className="text-lg font-medium text-primary mb-2">Med Coach</p>
+                  <p className="text-lg font-medium text-primary mb-2">Patient</p>
                   <p className="text-xl leading-relaxed">Loading...</p>
                 </div>
               </div>
