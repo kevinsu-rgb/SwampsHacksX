@@ -20,7 +20,7 @@ const menuItems = [
 
 export const AppSidebar = () => {
   return (
-    <Sidebar className="border-r border-border/50 glass-effect">
+    <Sidebar className="w-40 border-r border-border/50 glass-effect">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel></SidebarGroupLabel>
@@ -43,3 +43,4 @@ export const AppSidebar = () => {
     </Sidebar>
   );
 };
+

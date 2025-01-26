@@ -122,11 +122,11 @@ const Chat = () => {
             onKeyPress={handleKeyPress}
           />
           <Button 
-            className="bg-primary hover:bg-primary-light px-6"
+            className="bg-primary hover:bg-primary-light px-8 h-15 -ml-2"
             onClick={callCloudflareWorker}
             disabled={loading}
           >
-            <Send className="w-5 h-5" />
+            <Send className="w-25 h-100" />
           </Button>
         </div>
       </main>
