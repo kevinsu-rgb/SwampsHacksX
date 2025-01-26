@@ -28,7 +28,7 @@ export const Features = () => {
     <section className="py-24 bg-background-light">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Why Choose AI Doctor?</h2>
+          <h2 className="text-3xl font-bold mb-4">Why Choose Med Coach?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Experience the future of healthcare with our advanced AI-powered features
           </p>

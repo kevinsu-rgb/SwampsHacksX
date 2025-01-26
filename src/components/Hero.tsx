@@ -45,31 +45,26 @@ export const Hero = () => {
     <div className="min-h-screen flex items-center justify-center bg-background text-center px-4">
       <div className="max-w-3xl mx-auto animate-fade-up">
         <span className="px-3 py-1 text-sm font-medium bg-primary/10 text-primary rounded-full mb-4 inline-block">
-          AI-Powered Healthcare
+          AI-Powered Education
         </span>
         <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-          Your Personal AI Doctor
+          Med Coach
         </h1>
         <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Get instant health insights, symptom analysis, and personalized recommendations powered by advanced artificial intelligence.
+          Practice your diagnosis skills by identifying real medical conditions.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex justify-center">
           <Button
             size="lg"
             className="bg-primary hover:bg-primary-light hover-effect"
             onClick={callCloudflareWorker}
             disabled={loading}
           >
-            {loading ? "Loading..." : "Get Started"}
+            {loading ? "Loading..." : "Let's Practice"}
           </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="hover-effect"
-            asChild
-          >
-            <Link to="/about">Learn More</Link>
-          </Button>
+          { 
+ 
+            }
         </div>
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </div>
